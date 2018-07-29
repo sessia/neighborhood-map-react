@@ -6,12 +6,6 @@ const Filter = ({ data, filterPlaces, onMarkerClick }) => {
 
   return (
     <aside className="filter">
-      <a id="menu" tabIndex = {0} role="button"
-          aria-label="Menu that shows list of places you can filter" className="header__menu" >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path>
-          </svg>
-    	</a>
       <h2 className="filter-title" tabIndex="0">
         Filter Results
       </h2>

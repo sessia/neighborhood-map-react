@@ -45,7 +45,7 @@ const Filter = ({ data, filterPlaces, onMarkerClick }) => {
 
 Filter.propTypes = {
   data: PropTypes.object.isRequired,
-  onAsideOpen: PropTypes.func.isRequired,
+  onMarkerClick: PropTypes.func.isRequired,
   filterPlaces: PropTypes.func.isRequired
 }
 

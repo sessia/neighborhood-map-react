@@ -13,7 +13,10 @@ class App extends Component {
   state = {
     places: [],
     showedPlaces: [],
-    query: ''
+    query: '',
+    showInfoId: false,
+    action: '',
+    mapReady: false,
   }
 
 // Handling errors on Google Maps
@@ -29,7 +32,9 @@ class App extends Component {
   componentWillReceiveProps ({ isScriptLoaded, isScriptLoadSucceed }) {
     if (isScriptLoaded && !this.props.isScriptLoaded) { // load finished
       if (isScriptLoadSucceed) {
-        this.initMap()
+        if (window.google) {
+              this.setState({mapReady: true});
+        }
       }
       else {
         this.setState(() => ({
@@ -43,7 +48,8 @@ class App extends Component {
   componentDidMount() {
     this.setState({
       places: placesInfo,
-      showedPlaces: placesInfo
+      showedPlaces: placesInfo,
+      loaded: true
     });
   }
 
@@ -76,18 +82,6 @@ class App extends Component {
     this.setState({ showedPlaces });
   }
 
-
-  initMap = () => {
-      let app = this;
-      let map = new window.google.maps.Map(document.getElementById('map'), {
-        center: {lat: 43.7695604, lng: 11.2558136},
-        zoom: 13
-      });
-      let markers = [];
-      let infoWindow = new window.google.maps.InfoWindow();
-      
-    }
-
   render() {
     return (
       <div className="App">
@@ -95,14 +89,23 @@ class App extends Component {
         <main>
           <Filter
               data={this.state}
-              onAsideOpen={this.onToggleOpen}
+              onMarkerClick={this.onMarkerClick}
               filterPlaces={this.filterPlaces}
             />
-          <section id="map-container">
-            <div id="map" role="application" style={{height:"100%"}}>
+            <div className="map-wrapper">
+                        {(this.state.mapReady && this.state.data) && (
+                          <Map
+                            onMarkerClick={this.onMarkerClick}
+                            showInfoId={this.state.showInfoId}
+                            action={this.state.action}
+                            places={this.state.places}
+                            showedPlaces={this.state.showedPlaces}
+                            containerElement = {<main className="map" role="application" tabIndex="0"></main>}
+                            mapElement = {<div style={{height:100+'%'}}/>}
+                            mapContainer={<main className="map" role="application" tabIndex="0"></main>}
+                          />)}
+                    </div>
 
-            </div>
-          </section>
         </main>
         <footer tabIndex={0}>
           		 Project by Alessia Alessandri for the Udacity FEND Nanodegree. Integrated with

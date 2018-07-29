@@ -46,6 +46,93 @@ footer {
   background-color: rgb(196, 186, 189);
 }
 
+.filter {
+  background-color: #eceff1;
+  width: 30%;
+  padding: 3em 1em;
+}
+
+.filter-title {
+  color: #263238;
+  font-size: 24px;
+  font-weight: 300;
+  margin: 0;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #cfd8dc;
+}
+
+.filter-title .icon {
+  height: 26px;
+}
+
+.input-wrapper {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  margin: 1em 0;
+}
+
+.input-wrapper input {
+  height: 100%;
+  width: 90%;
+  background-color: #fff;
+  color: #263238;
+  line-height: 30px;
+  padding: 0.5em;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.filtered-places {
+  margin: 0.5em 0;
+  font-size: 16px;
+  color: #263238;
+  font-weight: 300;
+  text-align: center;
+}
+
+.filtered-places strong {
+  font-weight: normal;
+}
+
+.filtered-list {
+  margin: 1em 0 0 0;
+  list-style: none;
+  padding: 0.5em;
+  background-color: #cfd8dc;
+}
+
+.filtered-list .result-item {
+  color: #263238;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 0.5em;
+  border-bottom: 1px solid #b0bec5;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+
+.filtered-list .result-item:hover,
+.filtered-list .result-item:focus {
+  color: #000;
+  padding-left: 20px;
+}
+
+.filtered-list .result-item:last-child {
+  border-bottom: 0;
+}
+
+@media (max-width: 1179px) {
+  .filter {
+    width: 40%;
+  }
+}
+
+@media (max-width: 679px) {
+  .filter {
+    width: 100%;
+  }
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

@@ -4,21 +4,19 @@ import './App.css';
 import Header from './components/Header.js';
 import Filter from './components/Filter.js';
 import Map from './components/Map.js';
-import places from './places.json'
+import placesInfo from './places.json'
 import scriptLoader from 'react-async-script-loader';
+import escapeRegExp from 'escape-string-regexp';
 
 class App extends Component {
 
   state = {
-    markers: [],
-    map: '',
-    scriptFail: false,
-    place: "",
-    infoWindow: '',
-    showAside: false
+    places: [],
+    showedPlaces: [],
+    query: ''
   }
 
-// Handling errors om Google Maps
+// Handling errors on Google Maps
   componentDidMount() {
      window.gm_authFailure = this.gm_authFailure;
    }
@@ -27,6 +25,7 @@ class App extends Component {
     window.alert("Google maps authentication error");
   }
 
+//Loading async script
   componentWillReceiveProps ({ isScriptLoaded, isScriptLoadSucceed }) {
     if (isScriptLoaded && !this.props.isScriptLoaded) { // load finished
       if (isScriptLoadSucceed) {
@@ -40,6 +39,44 @@ class App extends Component {
     }
   }
 
+//Loading places data
+  componentDidMount() {
+    this.setState({
+      places: placesInfo,
+      showedPlaces: placesInfo
+    });
+  }
+
+  //when a marker is clicked
+  onMarkerClick = (id, action) => {
+    this.setState({
+      showInfoId: id,
+      action
+    });
+  }
+
+  //Apply a filter when writing on the search box
+  filterPlaces = (query) => {
+    const { places } = this.state;
+    let showedPlaces;
+
+    // update query in state
+    this.setState({
+      query: query
+    });
+
+  // filter places to show based on query
+    if (query) {
+      const match = new RegExp(escapeRegExp(query), 'i');
+      showedPlaces = places.filter(place => match.test(place.name));
+    } else {
+      showedPlaces = places;
+    }
+
+    this.setState({ showedPlaces });
+  }
+
+
   initMap = () => {
       let app = this;
       let map = new window.google.maps.Map(document.getElementById('map'), {
@@ -48,31 +85,7 @@ class App extends Component {
       });
       let markers = [];
       let infoWindow = new window.google.maps.InfoWindow();
-      for (let place of places) {
-        let marker = new window.google.maps.Marker({
-          position: place.location,
-          map: map,
-          title: place.title,
-          // Create a drop marker effect
-          animation: window.google.maps.Animation.DROP
-        });
-        markers.push(marker);
-        marker.addListener('click', function(e) {
-          app.setState(() => ({
-            place: place.title
-          }))
-          marker.setAnimation(window.google.maps.Animation.BOUNCE);
-          setTimeout(function () {
-            marker.setAnimation(null);
-            app.renderInfoWindow(marker, infoWindow, place, map);
-          }, 600)
-        })
-      }
-      this.setState(() => ({
-        markers: markers,
-        map: map,
-        infoWindow: infoWindow
-      }))
+      
     }
 
   render() {
@@ -80,9 +93,11 @@ class App extends Component {
       <div className="App">
         <Header />
         <main>
-          <aside>
-            <Filter />
-          </aside>
+          <Filter
+              data={this.state}
+              onAsideOpen={this.onToggleOpen}
+              filterPlaces={this.filterPlaces}
+            />
           <section id="map-container">
             <div id="map" role="application" style={{height:"100%"}}>
 

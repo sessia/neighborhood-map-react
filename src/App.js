@@ -18,20 +18,32 @@ class App extends Component {
     showAside: false
   }
 
+// Handling errors om Google Maps
+  componentDidMount() {
+     window.gm_authFailure = this.gm_authFailure;
+   }
+
+  gm_authFailure = () => {
+    window.alert("Google maps authentication error");
+  }
 
   componentWillReceiveProps ({ isScriptLoaded, isScriptLoadSucceed }) {
     if (isScriptLoaded && !this.props.isScriptLoaded) { // load finished
       if (isScriptLoadSucceed) {
         this.initMap()
       }
-      else this.props.onError()
+      else {
+        this.setState(() => ({
+           scriptFail: true
+        }))
+      }
     }
   }
 
   initMap = () => {
       let app = this;
       let map = new window.google.maps.Map(document.getElementById('map'), {
-        center: {lat: 38.7066464, lng: 20.640729999999962},
+        center: {lat: 43.7695604, lng: 11.2558136},
         zoom: 13
       });
       let markers = [];
@@ -72,7 +84,7 @@ class App extends Component {
             <Filter />
           </aside>
           <section id="map-container">
-            <div id="map" role="application">
+            <div id="map" role="application" style={{height:"100%"}}>
 
             </div>
           </section>

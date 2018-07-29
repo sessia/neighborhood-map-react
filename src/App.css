@@ -7,11 +7,14 @@
   height: 80px;
 }
 
-.App-header {
+header {
   background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+ /*height: 100px;*/
+ margin-bottom: 0px;
+ color: white;
+ width:100%;
+ display:flex;
+ flex-wrap: wrap;
 }
 
 .App-title {
@@ -21,6 +24,28 @@
 .App-intro {
   font-size: large;
 }
+
+main {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+#map {
+  width: 100%;
+}
+
+#map-container {
+  height: 90vh;
+  width: 100%
+}
+
+footer {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  background-color: rgb(196, 186, 189);
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

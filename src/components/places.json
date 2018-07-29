@@ -1,0 +1,66 @@
+[
+  {
+    "id": "4bc8c9d7af07a593d4aa812d",
+    "name": "Palazzo Pitti",
+    "position": {
+      "lat": 43.765658312587185,
+      "lng": 11.249918946013905
+    }
+  },
+  {
+    "id": "51191cdfb0ed67c8fff5610b",
+    "name": "Galleria degli Uffizi",
+    "position": {
+      "lat": 43.76874904911365,
+      "lng": 11.255741777395386
+    }
+  },
+  {
+    "id": "4e995c6b49015647ab2c6cfa",
+    "name": "Piazza del duomo",
+    "position": {
+      "lat": 43.773054,
+      "lng": 11.255541
+    }
+  },
+  {
+    "id": "4bd00520caff9521042ccef0",
+    "name": "Basilica di Santa Croce",
+    "position": {
+      "lat": 43.76844415079672,
+      "lng": 11.262799501419067
+    }
+  },
+  {
+    "id": "4b3276d5f964a520620c25e3",
+    "name": "Piazzale Michelangelo",
+    "position": {
+      "lat": 43.76311869394607,
+      "lng": 11.26418327659324
+    }
+  },
+  {
+    "id": "4b6ed35df964a52038cc2ce3",
+    "name": "Ponte Vecchio",
+    "position": {
+      "lat": 43.768040155496934,
+      "lng": 11.253228840488234
+    }
+  },
+  {
+    "id": "4bd01b8077b29c74a0298a82",
+    "name": "Palazzo Vecchio",
+    "position": {
+      "lat": 43.769227,
+      "lng": 11.256153
+    }
+  },
+  {
+    "id": "4ca033276c4795213fae8b0c",
+    "name": "Basilica di Santa Maria Novella",
+    "position": {
+      "lat": 43.77474770395611,
+      "lng": 11.249675412998121
+    }
+  }
+]

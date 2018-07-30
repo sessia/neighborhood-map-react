@@ -1,4 +1,3 @@
-/*global google */
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header.js';
@@ -13,9 +12,7 @@ class App extends Component {
     places: [],
     showedPlaces: [],
     query: '',
-    showInfoId: false,
-    action: '',
-    loaded: false
+    mapLoaded: false
   }
 
 // Handling errors on Google Maps
@@ -24,21 +21,12 @@ class App extends Component {
      this.setState({
        places: placesInfo,
        showedPlaces: placesInfo,
-       loaded: true
+       mapLoaded: true
      });
    }
 
   gm_authFailure = () => {
     window.alert("Google maps authentication error");
-  }
-
-
-  //when a marker is clicked
-  onMarkerClick = (id, action) => {
-    this.setState({
-      showInfoId: id,
-      action
-    });
   }
 
   //Apply a filter when writing on the search box
@@ -67,17 +55,13 @@ class App extends Component {
       <div className="App">
         <Header />
         <main>
-        { this.state.loaded &&
+        { this.state.mapLoaded &&
           <Filter
               data={this.state}
-              onMarkerClick={this.onMarkerClick}
               filterPlaces={this.filterPlaces}
             />}
 
            <Map
-              onMarkerClick={this.onMarkerClick}
-
-              action={this.state.action}
               places={this.state.places}
               showedPlaces={this.state.showedPlaces}
               loadingElement = {<div style={{ height: `100%` }}/>}

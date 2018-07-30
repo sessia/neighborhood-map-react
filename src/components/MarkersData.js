@@ -7,50 +7,43 @@ import { getLocations } from '../foursquareAPI';
 
 class MarkersData extends Component {
   state = {
-    loaded: false,
-    error: false,
-    placeDetails: {}
+    placeDetails: {},
+    error: false
   }
 
-  //Load place placeDetails
-
+  //Load details
   componentDidMount() {
     const placeId = this.props.placeId;
 
     getLocations(placeId)
       .then(placeDetails => {
-        this.setState({ placeDetails, loaded: true })
+        this.setState({ placeDetails})
       })
       .catch(err => {
-        console.log('Foursquare API returned with ', err);
+        console.log(err, 'from Foursquare API');
         this.setState({ error: true });
       });
   }
 
   render() {
-    const { loaded, error, placeDetails } = this.state;
-    const { placeId, placePos, onMarkerClick, showInfoId, action } = this.props;
+    const { error, placeDetails } = this.state;
+    const { placeId, placePos, showInfoId } = this.props;
 
     return (
       <Marker
         key={placeId}
         position={placePos}
         animation={google.maps.Animation.DROP}
-        onClick={() => onMarkerClick(placeId, 'open')}
       >
-        
+
       </Marker>
     );
   }
 }
 
 MarkersData.propTypes = {
-  key: PropTypes.string.isRequired,
   placeId: PropTypes.string.isRequired,
   placePos: PropTypes.object.isRequired,
-  onMarkerClick: PropTypes.func.isRequired,
-  showInfoId: PropTypes.string.isRequired,
-  action: PropTypes.string.isRequired
 }
 
 export default MarkersData;

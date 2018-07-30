@@ -25,7 +25,6 @@ const Filter = ({ data, filterPlaces, onMarkerClick }) => {
                 key={place.id}
                 className="result-item"
                 tabIndex="0"
-                onClick={() => onMarkerClick(place.id, 'open')}
               >
                 {place.name}
               </li>
@@ -39,7 +38,6 @@ const Filter = ({ data, filterPlaces, onMarkerClick }) => {
 
 Filter.propTypes = {
   data: PropTypes.object.isRequired,
-  onMarkerClick: PropTypes.func.isRequired,
   filterPlaces: PropTypes.func.isRequired
 }
 

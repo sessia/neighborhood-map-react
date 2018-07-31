@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Filter = ({ data, filterPlaces, onMarkerClick }) => {
-  const { places, showedPlaces } = data;
+const Filter = ({ states, filterPlaces, onMarkerClick }) => {
+  const { places, showedPlaces } = states;
 
   return (
     <aside className="filter">
@@ -12,8 +11,8 @@ const Filter = ({ data, filterPlaces, onMarkerClick }) => {
       <div className="input-wrapper">
           <input
             type="text"
-            placeholder="Search for specific places"
-            aria-label="Search for specific places"
+            placeholder="Find places on map"
+            aria-label="Find places on map"
             onChange={e => filterPlaces(e.target.value)}
           />
       </div>
@@ -25,6 +24,7 @@ const Filter = ({ data, filterPlaces, onMarkerClick }) => {
                 key={place.id}
                 className="result-item"
                 tabIndex="0"
+                onClick={() => onMarkerClick(place.id, 'show')}
               >
                 {place.name}
               </li>
@@ -35,10 +35,5 @@ const Filter = ({ data, filterPlaces, onMarkerClick }) => {
     </aside>
   )
 };
-
-Filter.propTypes = {
-  data: PropTypes.object.isRequired,
-  filterPlaces: PropTypes.func.isRequired
-}
 
 export default Filter;

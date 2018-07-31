@@ -12,7 +12,9 @@ class App extends Component {
     places: [],
     showedPlaces: [],
     query: '',
-    mapLoaded: false
+    toggle: '',
+    markerId: false
+
   }
 
 // Handling errors on Google Maps
@@ -29,12 +31,11 @@ class App extends Component {
     window.alert("Google maps authentication error");
   }
 
-  //Apply a filter when writing on the search box
+  //Filter function to use when writing on the search box
   filterPlaces = (query) => {
     const { places } = this.state;
     let showedPlaces;
 
-    // update query in state
     this.setState({
       query: query
     });
@@ -50,20 +51,31 @@ class App extends Component {
     this.setState({ showedPlaces });
   }
 
+  onMarkerClick = (id, toggle) => {
+    this.setState({
+      markerId: id,
+      toggle
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
         <main>
-        { this.state.mapLoaded &&
+
           <Filter
-              data={this.state}
+              states={this.state}
               filterPlaces={this.filterPlaces}
-            />}
+              onMarkerClick={this.onMarkerClick}
+            />
 
            <Map
               places={this.state.places}
               showedPlaces={this.state.showedPlaces}
+              onMarkerClick={this.onMarkerClick}
+              markerId={this.state.markerId}
+              toggle={this.state.toggle}
               loadingElement = {<div style={{ height: `100%` }}/>}
               containerElement={<div style={{width:`100%`}} className="map" role="application" tabIndex="0"></div>}
               mapElement={<div style={{ height: `100vh` }} />}

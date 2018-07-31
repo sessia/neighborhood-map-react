@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
 import MarkersData from './MarkersData.js';
 
@@ -17,6 +16,9 @@ const Map = withScriptjs(withGoogleMap((props) =>
               key={index}
               placeId={place.id}
               placePos={place.position}
+              onMarkerClick={props.onMarkerClick}
+              toggle={props.toggle}
+              markerId={props.markerId}
             />
         ))
       :
@@ -25,6 +27,9 @@ const Map = withScriptjs(withGoogleMap((props) =>
             key={index}
             placeId={place.id}
             placePos={place.position}
+            onMarkerClick={props.onMarkerClick}
+            toggle={props.toggle}
+            markerId={props.markerId}
           />
         ))
     }

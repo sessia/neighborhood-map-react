@@ -8,8 +8,7 @@
 }
 
 header {
-  background-color: #cc0000;
- /*height: 100px;*/
+  background-color: #ab1c1c;
  margin-bottom: 0px;
  color: white;
  width:100%;
@@ -41,33 +40,29 @@ main {
 }
 
 footer {
-  padding-top: 1vh;
-  padding-bottom: 1vh;
-  background-color: rgb(196, 186, 189);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #000;
+  color: #fff;
 }
 
 .filter {
-  background-color: #eceff1;
+  background-color: #eee;
   width: 30%;
-  padding: 3em 1em;
+  padding: 1em;
 }
 
 .filter-title {
-  color: #263238;
+  color: #000;
   font-size: 24px;
   font-weight: 300;
-  margin: 0;
   padding-bottom: 0.5em;
-  border-bottom: 1px solid #cfd8dc;
-}
-
-.filter-title .icon {
-  height: 26px;
+  border-bottom: 1px solid #ccc;
 }
 
 .input-wrapper {
   position: relative;
-  height: 40px;
+  height: 35px;
   width: 100%;
   margin: 1em 0;
 }
@@ -76,51 +71,37 @@ footer {
   height: 100%;
   width: 90%;
   background-color: #fff;
-  color: #263238;
   line-height: 30px;
   padding: 0.5em;
-  font-size: 18px;
-  font-weight: 300;
+  font-size: 15px;
 }
 
 .filtered-places {
   margin: 0.5em 0;
-  font-size: 16px;
-  color: #263238;
-  font-weight: 300;
+  font-size: 14px;
   text-align: center;
 }
 
-.filtered-places strong {
-  font-weight: normal;
-}
-
 .filtered-list {
-  margin: 1em 0 0 0;
   list-style: none;
   padding: 0.5em;
-  background-color: #cfd8dc;
+  background-color: #ddd;
 }
 
 .filtered-list .result-item {
-  color: #263238;
-  font-size: 16px;
-  font-weight: normal;
+  font-size: 15px;
   padding: 0.5em;
   border-bottom: 1px solid #b0bec5;
   cursor: pointer;
-  transition: all 0.4s ease-in-out;
 }
 
 .filtered-list .result-item:hover,
 .filtered-list .result-item:focus {
   color: #000;
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
-.filtered-list .result-item:last-child {
-  border-bottom: 0;
-}
+
 
 
 @media (min-width: 550px) and (max-width: 710px) {

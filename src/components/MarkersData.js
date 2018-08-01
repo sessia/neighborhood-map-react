@@ -52,6 +52,7 @@ class MarkersData extends Component {
                     Sorry, unable to retrieve information. Try again later
               </div>
             )
+            
             :
 
           <div className="place-details" tabIndex="0" key={placeId}>

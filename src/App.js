@@ -18,7 +18,7 @@ class App extends Component {
     infoLoaded: false
   }
 
-// Handling errors on Google Maps
+// Handling errors on Google Maps and loading data
   componentDidMount() {
      window.gm_authFailure = this.gm_authFailure;
      this.setState({
@@ -52,6 +52,7 @@ class App extends Component {
     this.setState({ showedPlaces });
   }
 
+//show information when a marker is clicked
   onMarkerClick = (id, toggle) => {
     this.setState({
       markerId: id,
@@ -59,6 +60,7 @@ class App extends Component {
     });
   }
 
+//open the sidebar when the icon is clicked
   openMenu = () => {
         const sidebar = document.querySelector('.filter');
 
@@ -73,8 +75,6 @@ class App extends Component {
         openMenu={this.openMenu}
         />
         <main>
-
-
 
           {this.state.infoLoaded &&
           <Filter

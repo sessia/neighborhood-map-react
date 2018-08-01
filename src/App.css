@@ -8,7 +8,7 @@
 }
 
 header {
-  background-color: #222;
+  background-color: #cc0000;
  /*height: 100px;*/
  margin-bottom: 0px;
  color: white;
@@ -17,12 +17,21 @@ header {
  flex-wrap: wrap;
 }
 
+h1{
+  padding-left: 30px;
+}
+
 .App-title {
   font-size: 1.5em;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.menu-icon{
+  width: 50px;
+  padding: 20px;
 }
 
 main {
@@ -113,14 +122,27 @@ footer {
   border-bottom: 0;
 }
 
-@media (max-width: 1179px) {
+
+@media (min-width: 550px) and (max-width: 710px) {
   .filter {
+    width: 50%;
+  }
+  .map {
     width: 40%;
   }
 }
 
-@media (max-width: 679px) {
+@media (max-width: 549px) {
+  h1 {
+    font-size: 1.3em;
+  }
   .filter {
+    width: 100%;
+  }
+  main {
+    position: relative;
+    display: flex;
+     flex-wrap: wrap;
     width: 100%;
   }
 }

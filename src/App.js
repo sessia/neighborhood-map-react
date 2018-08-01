@@ -6,6 +6,7 @@ import Map from './components/Map.js';
 import placesInfo from './places.json'
 import escapeRegExp from 'escape-string-regexp';
 
+
 class App extends Component {
 
   state = {
@@ -58,11 +59,23 @@ class App extends Component {
     });
   }
 
+  openMenu = () => {
+        const sidebar = document.querySelector('.filter');
+
+        sidebar.style.display === 'none' ? sidebar.style.display = 'block' : sidebar.style.display = 'none';
+    }
+
+
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header
+        openMenu={this.openMenu}
+        />
         <main>
+
+
+
           {this.state.infoLoaded &&
           <Filter
               states={this.state}
@@ -88,7 +101,9 @@ class App extends Component {
           		 Project by Alessia Alessandri for the Udacity FEND Nanodegree. Integrated with
                <a href="https://developers.google.com/maps/" tabIndex={0} aria-label="Google maps for developer site">Google Maps</a>
                and <a href="https://developer.foursquare.com/" tabIndex={0} aria-label="Foursquare for developer site">Foursquare</a> APIs.
-               <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>from <a href="https://www.flaticon.com/"
+               <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
+               and <a href="http://www.freepik.com" title="Freepik">Freepik</a>
+               from <a href="https://www.flaticon.com/"
                 title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"
                 title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       	</footer>

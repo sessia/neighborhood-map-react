@@ -49,7 +49,7 @@ class MarkersData extends Component {
           {
             error ? (
               <div className="place-details" tabIndex="0" key={placeId}>
-                    Sorry we were unable to retrieve information from Foursquare. Try again later
+                    Sorry, unable to retrieve information. Try again later
               </div>
             )
             :

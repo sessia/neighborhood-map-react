@@ -8,6 +8,7 @@ const Filter = ({ states, filterPlaces, onMarkerClick }) => {
       <h2 className="filter-title" tabIndex="0">
         Filter Results
       </h2>
+
       <div className="input-wrapper">
           <input
             type="text"

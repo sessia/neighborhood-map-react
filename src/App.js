@@ -13,8 +13,8 @@ class App extends Component {
     showedPlaces: [],
     query: '',
     toggle: '',
-    markerId: false
-
+    markerId: false,
+    infoLoaded: false
   }
 
 // Handling errors on Google Maps
@@ -23,7 +23,7 @@ class App extends Component {
      this.setState({
        places: placesInfo,
        showedPlaces: placesInfo,
-       mapLoaded: true
+       infoLoaded: true
      });
    }
 
@@ -63,13 +63,13 @@ class App extends Component {
       <div className="App">
         <Header />
         <main>
-
+          {this.state.infoLoaded &&
           <Filter
               states={this.state}
               filterPlaces={this.filterPlaces}
               onMarkerClick={this.onMarkerClick}
             />
-
+          }
            <Map
               places={this.state.places}
               showedPlaces={this.state.showedPlaces}
@@ -88,6 +88,9 @@ class App extends Component {
           		 Project by Alessia Alessandri for the Udacity FEND Nanodegree. Integrated with
                <a href="https://developers.google.com/maps/" tabIndex={0} aria-label="Google maps for developer site">Google Maps</a>
                and <a href="https://developer.foursquare.com/" tabIndex={0} aria-label="Foursquare for developer site">Foursquare</a> APIs.
+               <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>from <a href="https://www.flaticon.com/"
+                title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"
+                title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       	</footer>
       </div>
     );

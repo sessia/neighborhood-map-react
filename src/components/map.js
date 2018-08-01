@@ -11,9 +11,9 @@ const Map = withScriptjs(withGoogleMap((props) =>
 
   {
       props.showedPlaces.length === 0 ?
-        props.places.map((place, index) => (
+        props.places.map(place => (
             <MarkersData
-              key={index}
+              key={place.id}
               placeId={place.id}
               placePos={place.position}
               onMarkerClick={props.onMarkerClick}
@@ -22,9 +22,9 @@ const Map = withScriptjs(withGoogleMap((props) =>
             />
         ))
       :
-        props.showedPlaces.map((place, index) => (
+        props.showedPlaces.map(place => (
           <MarkersData
-            key={index}
+            key={place.id}
             placeId={place.id}
             placePos={place.position}
             onMarkerClick={props.onMarkerClick}

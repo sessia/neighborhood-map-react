@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Filter = ({ states, filterPlaces, onMarkerClick }) => {
-  const { places, showedPlaces } = states;
+  const { places,showedPlaces } = states;
 
   return (
     <aside className="filter">
@@ -24,7 +24,7 @@ const Filter = ({ states, filterPlaces, onMarkerClick }) => {
                 key={place.id}
                 className="result-item"
                 tabIndex="0"
-                onClick={() => onMarkerClick(place.id, 'show')}
+                onClick={() => onMarkerClick(place.id, 'view')}
               >
                 {place.name}
               </li>

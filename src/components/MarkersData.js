@@ -3,11 +3,14 @@
 import React, { Component } from 'react';
 import { Marker, InfoWindow } from 'react-google-maps';
 import { getLocations } from '../foursquareAPI';
+import markerIcon from '../marker.svg';
+import selectedMarkerIcon from '../selectedMarker.svg';
 
 class MarkersData extends Component {
   state = {
     placeInfo: {},
-    error: false
+    error: false,
+    infoLoaded: false
   }
 
   //Load details
@@ -16,16 +19,15 @@ class MarkersData extends Component {
 
     getLocations(placeId)
       .then(placeInfo => {
-        this.setState({placeInfo})
+        this.setState({placeInfo, infoLoaded: true})
       })
       .catch(err => {
-        console.log(err, 'from Foursquare API');
         this.setState({ error: true });
       });
   }
 
   render() {
-    const { error, placeInfo } = this.state;
+    const { placeInfo, error, infoLoaded } = this.state;
     const { placeId, placePos, onMarkerClick, toggle, markerId} = this.props;
 
     return (
@@ -34,43 +36,32 @@ class MarkersData extends Component {
         position={placePos}
         onClick={() => onMarkerClick(placeId,'view')}
         animation={google.maps.Animation.DROP}
+        icon={markerId === placeId && toggle === 'view' ? { url:selectedMarkerIcon, scale: 1 } : { url:markerIcon, scale: 1 }}
       >
 
-      {
-        (toggle === 'view') &&
-        <InfoWindow
-          key={placeId}
-          onCloseClick={() => onMarkerClick(placeId,'hide')}
-        >
+        {
+          (toggle === 'view' && markerId===placeId) &&
+          <InfoWindow
+            key={placeId}
+            onCloseClick={() => onMarkerClick(placeId,'hide')}
+          >
 
-        <div className="place-details" tabIndex="0" key={placeId}>
-              <h3 className="place-title">
-                <a href={placeInfo.canonicalUrl}>{placeInfo.name}</a>
-              </h3>
-              <div className="place-image">
-                <img src={`${placeInfo.bestPhoto.prefix}width150${placeInfo.bestPhoto.suffix}`} alt={`Best of ${placeInfo.name}`} />
+          {
+            error ? (
+              <div className="place-details" tabIndex="0" key={placeId}>
+                    Sorry we were unable to retrieve information from Foursquare. Try again later
               </div>
-              <p className="place-address">{placeInfo.location.address || 'We do not know the address'}</p>
-              <div
-                className="place-rating"
-                title={`This place is rated ${placeInfo.rating}`}
-              >
-                <p className="rating-value" aria-hidden="true">{placeInfo.rating}</p>
-              </div>
-              <div className="place-price" title={`Going here costs ${placeInfo.price.message}`}>
-                <span aria-hidden="true">{placeInfo.attributes.groups['0'].summary}</span>
-              </div>
-              <div className="place-category">
-                {
-                  placeInfo.categories.map(category =>
-                    <span key={category.id} className="category-names">{category.name} </span>
-                  )
-                }
-              </div>
-              <a className="details-more" href={placeInfo.canonicalUrl} title="See all in Foursquare">
-                Se all in Foursquare website
-              </a>
-            </div>
+            )
+            :
+
+          <div className="place-details" tabIndex="0" key={placeId}>
+                <h3 className="place-title">
+                  {placeInfo.name}
+                </h3>
+                <div className="place-address">{placeInfo.location.address || "Unknown address"}</div>
+                <div className="place-rating">This place rating is {placeInfo.rating}</div>
+          </div>
+        }
           </InfoWindow>
         }
       </Marker>
